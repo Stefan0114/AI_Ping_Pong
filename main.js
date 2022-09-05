@@ -23,10 +23,33 @@ var ball = {
 
 function setup(){
   var canvas =  createCanvas(700,600);
+  canvas.parent('canvas');
+  
+  video = createCapture(VIDEO);
+  video.size(700, 600);
+  video.hide();
+
+  poseNet = ml5.poseNet(video, modelLoaded);
+  poseNet.on('pose', gotPoses);
 }
 
+function modelLoaded()
+{
+  console.log('Model Loaded!');
+}
 
-function draw(){
+function gotPoses(results)
+{
+  if(results.length > 0)
+    {
+      rightWristX = results[0].pose.rightWrist.x;
+      rightWristY = results[0].pose.rightWrist.y;
+      console.log("rightWristX = " + rightWristX + ", rightWristY = " + rightWristY);
+    }
+}
+
+function draw()
+{
 
  background(0); 
 

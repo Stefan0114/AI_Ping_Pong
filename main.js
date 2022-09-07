@@ -9,17 +9,23 @@ var paddle2Y = 685,paddle2Height = 70;
 var score1 = 0, score2 =0;
 var paddle1Y;
 
-var  playerscore =0;
+var  playerscore = 0;
 var audio1;
-var pcscore =0;
+var pcscore = 0;
 //ball x and y and speedx speed y and radius
-var ball = {
+var ball =
+{
     x:350/2,
     y:480/2,
     r:20,
     dx:3,
     dy:3
 }
+
+rightWristX = 0;
+rightWristY = 0;
+scoreRightWrist = 0;
+game_status = "";
 
 function setup(){
   var canvas =  createCanvas(700,600);
@@ -48,6 +54,12 @@ function gotPoses(results)
     }
 }
 
+function startGame()
+{
+  GameStatus = "start";
+  document.getElementById("status").innerHTML = "Game is Loading";
+}
+
 function draw()
 {
 
@@ -61,6 +73,11 @@ function draw()
  stroke("black");
  rect(0,0,20,700);
  
+ if(scoreRightWrist > 0.2) 
+ { fill("red"); 
+ stroke("red"); 
+ circle(rightWristX, rightWristY, 30); 
+}
    //funtion paddleInCanvas call 
    paddleInCanvas();
  

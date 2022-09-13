@@ -25,10 +25,14 @@ rightWristX = 0;
 scoreRightWrist = 0;
 
 //Define a variable to hold the status of the game
+function preload() 
+{
+  ball_touch_paddel = loadSound("ball_touch_paddel.wav"); 
+  missed = loadSound("missed.wav"); 
+}
 
- 
-
-function setup(){
+function setup()
+{
 var canvas =  createCanvas(700,600);
 canvas.parent('canvas');
 
@@ -211,7 +215,11 @@ function paddleInCanvas(){
   if(paddle1Y < 0){
     paddle1Y =0;
   }
- 
-  
 }
 
+function restart()
+{
+  loop();
+  pcscore = 0;
+  playerscore = 0;
+}
